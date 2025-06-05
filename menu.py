@@ -1,17 +1,44 @@
 import tkinter as tk
+from tkinter import messagebox
+import sqlite3
+import registro
 
-def menu(user_id,usuario):
+def consultar(user_id):
+    try:
+        conn = sqlite3.connect("banco.db")  # Conecta ao banco de dados correto
+        cursor = conn.cursor()
+
+        # Consulta registros filtrando pelo campo correto: userId
+        cursor.execute("SELECT data, id, desc, path, todo FROM registro WHERE userId = ?", (user_id,))
+        resultados = cursor.fetchall()
+        conn.close()
+
+        if resultados:
+            mensagem = "Registros encontrados:\n\n"
+            for i, (data, id, desc, path, todo) in enumerate(resultados, 1):
+                mensagem += f"{i}. {desc}\n   {path}\n {todo}\n {id}\n   {data}\n\n"
+            messagebox.showinfo("Consulta de Registros", mensagem)
+        else:
+            messagebox.showinfo("Sem Registros", "Nenhum registro encontrado para este usuário.")
+    except Exception as e:
+        messagebox.showerror("Erro", f"Erro ao consultar: {str(e)}")
+
+def menu(user_id, usuario):
     janela = tk.Tk()
     janela.title("Sistema Principal")
-    janela.geometry("300x150")
+    janela.geometry("350x200")
 
     label_id = tk.Label(janela, text=f"ID do usuário: {user_id}")
-    label_id.pack(pady=10)
+    label_id.grid(row=0, column=0, padx=10, pady=10)
 
-    label = tk.Label(janela, text=f"Bem-vindo, {usuario}!", font=("Arial", 14))
-    label.pack(pady=30)
+    
 
-    btn_sair = tk.Button(janela, text="Sair", command=janela.destroy)
-    btn_sair.pack(pady=10)
+    btn_consultar = tk.Button(janela, text="Consultar Registros",
+                              command=lambda: consultar(user_id))
+    btn_consultar.grid(row=2, column=0, padx=10, pady=20)
+
+    btn_novo = tk.Button(janela, text="Novo Registro",
+                         command=lambda: registro.abrir_janela_registro(user_id))
+    btn_novo.grid(row=3, column=0, padx=10, pady=10)
 
     janela.mainloop()
