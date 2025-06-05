@@ -1,17 +1,17 @@
 import tkinter as tk
 
+def menu(user_id,usuario):
+    janela = tk.Tk()
+    janela.title("Sistema Principal")
+    janela.geometry("300x150")
 
-root = tk.Tk()
-root.title("Menu")  
-root.geometry("300x200")  
-root.configure(bg="lightblue")
+    label_id = tk.Label(janela, text=f"ID do usuário: {user_id}")
+    label_id.pack(pady=10)
 
-btn1 = tk.Button(root, text="Botão 1")
-btn2 = tk.Button(root, text="Botão 2")
-btn3 = tk.Button(root, text="Botão 3")
+    label = tk.Label(janela, text=f"Bem-vindo, {usuario}!", font=("Arial", 14))
+    label.pack(pady=30)
 
-btn1.pack(fill="both", expand=True,padx=10, pady=5)
-btn2.pack(fill="both", expand=True,padx=10, pady=5)
-btn3.pack(fill="both", expand=True,padx=10, pady=5)
+    btn_sair = tk.Button(janela, text="Sair", command=janela.destroy)
+    btn_sair.pack(pady=10)
 
-root.mainloop()
+    janela.mainloop()
