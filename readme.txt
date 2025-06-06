@@ -13,3 +13,5 @@ Para deletar ou alterar um registro primeiro deve-se consultar o banco para desc
 Nas telas de alterar/deletar primeiro o espaço para o id do registro deve ser preenchido, após disso o sistema irá ser capaz de achar o registro no banco.
 
 Ao consultar, todos os registros do usuario serão exibidos.
+
+Para iniciar o programa inicie o main.py.
