@@ -6,10 +6,10 @@ import main
 
 def consultar(user_id,root):
     try:
-        conn = sqlite3.connect("banco.db")  # Conecta ao banco de dados correto
+        conn = sqlite3.connect("banco.db")  
         cursor = conn.cursor()
 
-        # Consulta registros filtrando pelo campo correto: userId
+        
         cursor.execute("SELECT data, id, desc, path, todo FROM registro WHERE userId = ?", (user_id,))
         resultados = cursor.fetchall()
         conn.close()

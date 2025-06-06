@@ -53,7 +53,7 @@ def janela_registro(user_id,usuario):
 
             messagebox.showinfo("Sucesso", "Registro salvo com sucesso!")
             with open("relatorio.txt", "a") as arquivo:
-                arquivo.write(f"Usuario de ID: {user_id} adicionou um registro as {data}\n")
+                arquivo.write(f"Usuario de ID: {user_id} adicionou um registro em {data}\n")
 
             janela.destroy()
         except Exception as e:
