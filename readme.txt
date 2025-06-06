@@ -1,6 +1,7 @@
 Sistema para organizar arquivos pessoais
 O banco de dados SQLite guarda o caminho,descrição,ID,ID do Usuario e o estatus(trabalhando:SIM/NÃO) do arquivo.
 Se voce nao tem o SQLite instalado em sua maquina rode o arquivo(instalarAqlite), um comando pip será inserido em seu prompt de comando.
+Ou insira em seu terminal:pip install db-sqlite3.
 
 A primeira tela faz o login ou cadastra um usuario ainda nao cadastrado
 
