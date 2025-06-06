@@ -3,7 +3,7 @@ from tkinter import messagebox, ttk, filedialog
 import sqlite3
 from datetime import date
 
-def abrir_janela_registro(user_id):
+def janela_registro(user_id,usuario):
     janela = tk.Toplevel()
     janela.title("Novo Registro")
     janela.geometry("350x350")
@@ -52,6 +52,9 @@ def abrir_janela_registro(user_id):
             conn.close()
 
             messagebox.showinfo("Sucesso", "Registro salvo com sucesso!")
+            with open("relatorio.txt", "a") as arquivo:
+                arquivo.write(f"Usuario de ID: {user_id} adicionou um registro as {data}\n")
+
             janela.destroy()
         except Exception as e:
             messagebox.showerror("Erro", f"Erro ao salvar registro: {str(e)}")
