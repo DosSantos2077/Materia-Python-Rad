@@ -9,7 +9,7 @@ import deletar
 def menu(user_id, usuario):
     janela = tk.Tk()
     janela.title("Sistema Principal")
-    janela.geometry("350x200")
+    janela.geometry("200x200")
     janela.configure(bg="lightblue")
 
     label_id = tk.Label(janela, text=f"ID do usuário: {user_id}")
@@ -27,6 +27,6 @@ def menu(user_id, usuario):
 
     btn_del = tk.Button(janela, text="deletar registro",
                          command=lambda: deletar.janela_deletar(user_id,usuario))
-    btn_del.grid(row=1, column=1, padx=10, pady=10)
+    btn_del.grid(row=1, column=0, padx=10, pady=10)
 
     janela.mainloop()
