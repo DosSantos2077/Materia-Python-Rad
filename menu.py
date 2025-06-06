@@ -16,7 +16,7 @@ def consultar(user_id):
         if resultados:
             mensagem = "Registros encontrados:\n\n"
             for i, (data, id, desc, path, todo) in enumerate(resultados, 1):
-                mensagem += f"{i}. {desc}\n   {path}\n {todo}\n {id}\n   {data}\n\n"
+                mensagem += f"{i}. Descriçao: {desc}\n Caminho: {path}\n Terminado {todo}\n ID: {id}\n Data:  {data}\n\n"
             messagebox.showinfo("Consulta de Registros", mensagem)
         else:
             messagebox.showinfo("Sem Registros", "Nenhum registro encontrado para este usuário.")
