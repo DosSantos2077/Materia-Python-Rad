@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox, ttk, filedialog
 import sqlite3
+from datetime import date
 
 def abrir_janela_registro(user_id):
     janela = tk.Toplevel()
@@ -11,9 +12,7 @@ def abrir_janela_registro(user_id):
     entry_descricao = tk.Entry(janela, width=40)
     entry_descricao.pack(pady=5)
 
-    tk.Label(janela, text="Data (AAAA-MM-DD):").pack(pady=5)
-    entry_data = tk.Entry(janela, width=40)
-    entry_data.pack(pady=5)
+    
 
     tk.Label(janela, text="Todo (Sim ou Não):").pack(pady=5)
     combo_todo = ttk.Combobox(janela, values=["Sim", "Não"], state="readonly", width=10)
@@ -32,15 +31,15 @@ def abrir_janela_registro(user_id):
 
     def salvar_registro():
         descricao = entry_descricao.get()
-        data = entry_data.get()
-        todo_valor = combo_todo.get()
+        data = date.today()
+        todo = combo_todo.get()
         path = caminho_path.get()
 
         if not descricao or not data:
             messagebox.showwarning("Aviso", "Preencha todos os campos obrigatórios.")
             return
 
-        todo_inteiro = 1 if todo_valor == "Sim" else 0
+        
 
         try:
             conn = sqlite3.connect("banco.db")
@@ -48,7 +47,7 @@ def abrir_janela_registro(user_id):
             cursor.execute("""
                 INSERT INTO registro (userId, desc, data, todo, path)
                 VALUES (?, ?, ?, ?, ?)
-            """, (user_id, descricao, data, todo_inteiro, path))
+            """, (user_id, descricao, data, todo, path))
             conn.commit()
             conn.close()
 

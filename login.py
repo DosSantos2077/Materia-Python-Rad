@@ -25,7 +25,7 @@ def login(entry_usuario, entry_senha, janela_login):
         janela_login.destroy()
         menu.menu(user_id, nome_usuario)
     else:
-        messagebox.showerror("Erro", "Usuário ou senha incorretos.")
+        messagebox.showerror("Erro", "Usuario ou senha incorretos.")
 
 def cadastrar(entry_usuario, entry_senha):
     usuario = entry_usuario.get()
@@ -40,9 +40,9 @@ def cadastrar(entry_usuario, entry_senha):
     try:
         cursor.execute("INSERT INTO usuarios (usuario, senha) VALUES (?, ?)", (usuario, senha))
         conn.commit()
-        messagebox.showinfo("Sucesso", "Usuário cadastrado com sucesso!")
+        messagebox.showinfo("Sucesso", "Usuario cadastrado.")
     except sqlite3.IntegrityError:
-        messagebox.showerror("Erro", "Usuário já existe.")
+        messagebox.showerror("Erro", "Usuario já existe.")
     finally:
         conn.close()
 
@@ -53,7 +53,7 @@ def iniciar_login():
     janela_login.title("Login e Cadastro")
     janela_login.geometry("300x200")
 
-    label_usuario = tk.Label(janela_login, text="Usuário:")
+    label_usuario = tk.Label(janela_login, text="Usuario:")
     label_usuario.pack(pady=5)
     entry_usuario = tk.Entry(janela_login)
     entry_usuario.pack(pady=5)
