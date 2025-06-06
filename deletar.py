@@ -7,6 +7,7 @@ def janela_deletar(user_id,usuario):
     janela = tk.Toplevel()
     janela.title("deletar registro")
     janela.geometry("500x450")
+    janela.configure(bg="lightblue")
 
     tk.Label(janela, text="ID do registro:").pack(pady=5)
     entry_id = tk.Entry(janela, width=40)
@@ -31,13 +32,15 @@ def janela_deletar(user_id,usuario):
             """, (id, user_id))
 
             if cursor.rowcount == 0:
-             messagebox.showwarning("Aviso", "Nenhum registro encontrado com esse ID para este usuário.")
+                messagebox.showwarning("Aviso", "Nenhum registro encontrado com esse ID para este usuário.")
+                conn.close()
             else:
                 conn.commit()
-            messagebox.showinfo("Sucesso", "Registro deletado com sucesso.")
+                messagebox.showinfo("Sucesso", "Registro deletado com sucesso.")
+                conn.close()
 
-            with open("relatorio.txt", "a") as arquivo:
-                arquivo.write(f"Usuario de ID: {user_id} deletou um registro em {data.today()}\n")
+                with open("relatorio.txt", "a") as arquivo:
+                    arquivo.write(f"Usuario de ID: {user_id} deletou um registro em {data.today()}\n")
 
             janela.destroy()
         except Exception as e:

@@ -7,6 +7,7 @@ def janela_registro(user_id,usuario):
     janela = tk.Toplevel()
     janela.title("Novo Registro")
     janela.geometry("350x350")
+    janela.configure(bg="lightblue")
 
     tk.Label(janela, text="Descrição:").pack(pady=5)
     entry_descricao = tk.Entry(janela, width=40)
@@ -14,7 +15,7 @@ def janela_registro(user_id,usuario):
 
     
 
-    tk.Label(janela, text="Todo (Sim ou Não):").pack(pady=5)
+    tk.Label(janela, text="Trabalhando (Sim ou Não):").pack(pady=5)
     combo_todo = ttk.Combobox(janela, values=["Sim", "Não"], state="readonly", width=10)
     combo_todo.pack(pady=5)
     combo_todo.current(0)
